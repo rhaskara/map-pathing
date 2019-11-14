@@ -1,0 +1,11 @@
+{
+  "DATABASE_URI": {
+    "description": "A unique identifier for parse database platform."
+  },
+  "SERVER_URL": {
+    "description": "A unique parse server url for your app."
+  },
+  "secret": {
+    "description": "A unique key to generate cookie token."
+  }
+}
