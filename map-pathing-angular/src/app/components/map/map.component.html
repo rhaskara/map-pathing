@@ -1,0 +1,38 @@
+<div class="map-container">
+  <agm-map id="agm-map" [latitude]="lat" [longitude]="lng" [zoom]="14" [minZoom]="4" [maxZoom]="19" [restriction]="{ latLngBounds: { north: 85, south: -85, west: -180, east: 180 }, strictBounds: true }" [zoomControl]="false" [streetViewControl]="false">
+    <agm-marker *ngFor="let m of markers" [latitude]="m.lat" [longitude]="m.lng" [label]="m.label"></agm-marker>
+  </agm-map>
+  <div id="map-input-container" [@hideShow]="hideInputTab? 'hidden' : 'shown'">
+    <div class="loader-container" *ngIf="loaderShow">
+      <div id="loader"></div>
+      <p id="loader-message">{{ loaderMessage }}</p>
+    </div>
+    <form #inputForm class="input-form" (submit)="submitForm(originAddress, destinationAddress);">
+      <div class="form-group">
+        <label for="originAddress" class="form-label">Starting Location</label>
+        <input type="text" class="form-control" id="originInput" name="originAddress" [(ngModel)]="originAddress" aria-label="originAddress">
+      </div>
+      <div class="form-group">
+        <label for="destinationAddress" class="form-label">Drop-off Point</label>
+        <input type="text" class="form-control" id="destinationInput" name="destinationAddress" [(ngModel)]="destinationAddress" aria-label="destinationAddress">
+      </div>
+      <div class="response-messages">
+        <div *ngIf="responseMessages">
+          <div *ngFor="let response of responseMessages" [ngClass]="response.title == 'Error'? 'status-text-red' : 'status-text-black'" class="status-text">
+            {{ response.title }}: {{ response.message }}
+          </div>
+        </div>
+      </div>
+      <div class="btn-container">
+        <button [disabled]="loaderShow || (!originAddress || originAddress == '' || !destinationAddress || destinationAddress == '')" type="submit" class="btn btn-primary">Submit</button>
+        <button [disabled]="loaderShow" (click)="resetForm(inputForm, initCoordinates);" type="button" class="btn btn-secondary">Reset</button>
+      </div>
+    </form>
+    <button class="btn hide-btn" (click)="toggleInputDisplay();">      
+      <i class="fas fa-angle-double-left"></i>
+    </button>
+  </div>
+  <button class="show-btn" (click)="toggleInputDisplay();" [@hideShow]="hideInputTab? 'buttonShow' : 'buttonHide'">
+    <i class="fas fa-angle-double-right fa-3x"></i>
+  </button>
+</div>

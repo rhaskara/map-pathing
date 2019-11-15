@@ -1,0 +1,21 @@
+{
+  "name": "rhaskara-map-pathing",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "engines": {
+    "node": "12.13.0"
+  },
+  "scripts": {
+    "start": "node app.js",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "heroku-prebuild": "echo This runs before Heroku installs your dependencies.",
+    "heroku-postbuild": "npm install --prefix ./client"
+  },
+  "author": "Rafferty Hutari Askara",
+  "license": "MIT",
+  "dependencies": {
+    "body-parser": "*",
+    "express": "*"
+  }
+}

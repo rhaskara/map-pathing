@@ -1,0 +1,34 @@
+@mixin placeholder {
+  &::-webkit-input-placeholder {
+    @content;
+  }
+  &:-moz-placeholder {
+    @content;
+  }
+  &::-moz-placeholder {
+    @content;
+  }
+  &:-ms-input-placeholder {
+    @content;
+  }
+  &::-ms-input-placeholder {
+    @content;
+  }
+  &::placeholder {
+    @content;
+  }
+}
+
+@mixin corner-border-radius ($property) {
+  border-bottom-right-radius: $property;
+  border-bottom-left-radius: $property;
+  border-top-right-radius: $property;
+  border-top-left-radius: $property;
+}
+
+@mixin position-absolute-center ($property) {
+  top: $property;
+  bottom: $property;
+  right: $property;
+  left: $property;
+}
